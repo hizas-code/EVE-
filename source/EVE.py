@@ -1,4 +1,4 @@
-import re
+gitimport re
 import random
 
 reflections ={

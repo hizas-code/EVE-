@@ -1,4 +1,4 @@
-gitimport re
+import re
 import random
 
 reflections ={
@@ -16,8 +16,8 @@ reflections ={
     "you": "me",
     "me": "you"}
 
-pattern = [
-    [r'(Hello|Hi)',
+patterns = [
+    [r'(Hello|Hi|Hai|Hey|Hei|Halo)',
      ["{0}"]],
 
     [r'How are you ([^\?]*)\??',
@@ -124,33 +124,70 @@ pattern = [
       "Hmmmmm really? I never really thought about that myself."]],
 ]
 
+#Knowledge
 
-def reflect(fragment):
-    tokens = fragment.lower().split()
-    for i, token in enumerate(tokens):
-        if token in reflections:
-            tokens[i] = reflections[token]
-    return ' '.join(tokens)
+world_champion = {
+    1930 : "Uruguay",
+    1934 : "Italy",
+    1938 : "Italy",
+    1950 : "Uruguay",
+    1954 : "Germany",
+    1958 : "Brazil",
+    1962 : "Brazil",
+    1966 : "England",
+    1970 : "Brazil",
+    1974 : "Germany",
+    1978 : "Argentina",
+    1982 : "Italy",
+    1986 : "Argentina",
+    1990 : "Germany",
+    1994 : "Brazil",
+    1998 : "France",
+    2002 : "Brazil",
+    2006 : "Italy",
+    2010 : "Spain",
+    2014 : "Germany",
+}
 
+uefa_champion = [
 
-def analyze(statement):
-    for patterns, responses in pattern:
-        match = re.match(patterns, statement.rstrip(".!"), re.I)
+]
+
+club = {
+    "Real Madrid": [
+        "White", "Zinedine Zidane", "Santiago Bernabeu"
+    ],
+    "Barcelona": [
+        "Red and Blue", "Luis Enrique", "Camp Nou"
+    ],
+    "Manchester United" : [
+        "Orange", "Jose Mourinho", "Old Trafford"
+    ],
+    "Juventus": [
+        "White and Black", "Massimiliano Allegri", "Juventus Stadium"
+    ],
+    "Bayern Munchen": [
+        "Red", "Carlo Ancelloti", "Allianz Arena"
+    ]
+}
+
+#END
+
+def thinking(chat):
+    for pattern, answers in patterns:
+        match = re.match(pattern, chat, re.I)
         if match:
-            response = random.choice(responses)
-            return response.format(*[reflect(g) for g in match.groups()])
-
+            answer = random.choice(answers)
+            return answer.format(match.group())
 
 def main():
     print ("Hello there, I'm EVE! You can talk about football with me :)")
-
     while True:
-        statement = input("> ")
-        print (analyze(statement))
-
-        if statement == "quit":
+        chat = input("~~ ")
+        speak = thinking(chat)
+        print(speak)
+        if chat == "quit":
             break
-
 
 if __name__ == "__main__":
     main()

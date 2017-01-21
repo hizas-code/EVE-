@@ -21,7 +21,8 @@ barcelona = Luis Enrique Martínez García
 juventus = Massimiliano Allegri
 manchester united = Jose Mourinho
 
-do you know who is champion of "" in "" ?
+who is the world champion in ""?
+
 
 do you know what is the uniform color of "" ?
 real madrid = white

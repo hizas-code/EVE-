@@ -16,7 +16,8 @@ reflections ={
     "you": "me",
     "me": "you"}
 
-world_champion = {
+'''
+world_champions = {
     1930 : "Uruguay",
     1934 : "Italy",
     1938 : "Italy",
@@ -38,26 +39,50 @@ world_champion = {
     2010 : "Spain",
     2014 : "Germany"
 }
+'''
 
-clubs = {
-    "Real Madrid": [
+world_champions = [
+    ["1930", ["Uruguay"]],
+    ["1934", ["Italy"]],
+    ["1938", ["Italy"]],
+    ["1950", ["Uruguay"]],
+    ["1954", ["Germany"]],
+    ["1958", ["Brazil"]],
+    ["1962", ["Brazil"]],
+    ["1966", ["England"]],
+    ["1970", ["Brazil"]],
+    ["1974", ["Germany"]],
+    ["1978", ["Argentina"]],
+    ["1982", ["Italy"]],
+    ["1986", ["Argentina"]],
+    ["1990", ["Germany"]],
+    ["1994", ["Brazil"]],
+    ["1998", ["France"]],
+    ["2002", ["Brazil"]],
+    ["2006", ["Italy"]],
+    ["2010", ["Spain"]],
+    ["2014", ["Germany"]]
+]
+
+clubs = [
+    ["Real Madrid", [
         "White", "Zinedine Zidane", "Santiago Bernabeu"
-    ],
-    "Barcelona": [
+    ]],
+    ["Barcelona",[
         "Red and Blue", "Luis Enrique", "Camp Nou"
-    ],
-    "Manchester United" : [
+    ]],
+    ["Manchester United",[
         "Orange", "Jose Mourinho", "Old Trafford"
-    ],
-    "Juventus": [
+    ]],
+    ["Juventus", [
         "White and Black", "Massimiliano Allegri", "Juventus Stadium"
-    ],
-    "Bayern Munchen": [
+    ]],
+    ["Bayern Munchen",[
         "Red", "Carlo Ancelloti", "Allianz Arena"
-    ]
-}
+    ]]
+]
 
-ballonD = {
+ballonDs = {
     "Cristiano Ronaldo":4,
     "Lionel Messi":5,
     "Neymar":0,
@@ -74,8 +99,8 @@ ballonD = {
     "Aliyudin":0
 }
 
-bestPlayer={
-    "the world":"Lionel Messi. Because he won Ballon D'Or for 5 times.",
+bestPlayers={
+    "world":"Lionel Messi. Because he won Ballon D'Or for 5 times.",
     "Real Madrid":"Cristiano Ronaldo. Because he won Ballon D'Or 4 times.",
     "Bayern Munchen":"Robert Lewandowski. He got the title in 2016.",
     "Barcelona": "Lionel Messi. He got the title in 2016.",
@@ -86,13 +111,8 @@ bestPlayer={
     "Asia":"Omar Abdulrahman"
 }
 
-def find_coach(search):
-    for club,info in clubs.items():
-        if club == search:
-            return "Coach of " , club , " is ", info[1]
-    return "I dont know"
 
-stadium = {
+stadiums = {
     "Santiago Bernabéu":"Av. de Concha Espina, 1, 28036 Madrid, Spain",
     "Allianz Arena":"Werner-Heisenberg-Allee 25, 80939 München, Germany",
     "Camp Nou":"C. Aristides Maillol, 12, 08028 Barcelona, Spain",
@@ -129,9 +149,6 @@ patterns = [
 
     [r'When was football (created|found|invented|started)? ',
      ["Football was {0} by Ancient Greeks (400-375 BC) and then Chinese added rules to it (1130-1160)."]],
-
-    [r'(.*) coach of ([^\?]*)\??',
-     [find_coach("{0}")]],
 
     [r'I (like|love) football',
      ["Hmm what do you {0} about it?",
@@ -219,6 +236,84 @@ patterns = [
 
 
 def thinking(chat):
+    detail = ""
+    match = re.match(r"(.*)uniform color of ([^\?]*)\?", chat, re.I)
+    if match:
+        club = match.group(2)
+        for x, y in clubs:
+            if (x.lower() == club.lower()):
+                detail = y[0]
+        if detail != "":
+            return "The uniform color of " + club + " is " + detail
+        else:
+            return "I don't know"
+
+    match = re.match(r"(.*)coach of ([^\?]*)\??", chat, re.I)
+    if match:
+        club = match.group(2)
+        for x, y in clubs:
+            if(x.lower() == club.lower()):
+                detail = y[1]
+        if detail != "":
+            return "Coach of " + club + " is " + detail
+        else:
+            return "I don't know"
+
+    match = re.match(r"(.*)stadium of ([^\?]*)\??", chat, re.I)
+    if match:
+        club = match.group(2)
+        for x, y in clubs:
+            if(x.lower() == club.lower()):
+                detail= y[2]
+        if detail != "":
+            return "The stadium of " + club + " is " + detail
+        else:
+            return "I don't know"
+
+    match = re.match(r"(.*)world champion ([^\?]*)\??", chat, re.I)
+    if match:
+        world_champion = match.group(2)
+        for x, y in world_champions:
+            if x==world_champion:
+                detail=y[0]
+        if detail !="":
+            return "The world champion in " + world_champion + " is " + detail
+        else:
+            return "I don't know"
+
+    match = re.match(r"(.*)best player ([^\?]*)\?", chat, re.I)
+    if match:
+        bestPlayer = match.group(2)
+        for x, y in bestPlayers.items():
+            if (x.lower() == bestPlayer.lower()):
+                detail = y
+        if detail != "":
+            return "The best player in the " + bestPlayer + " is " + detail
+        else:
+            return "I don't know"
+
+    match = re.match(r"How many(.*)won the Ballon D'or ([^\?]*)\?", chat, re.I)
+    if match:
+        ballonD = match.group(1)
+        for x, y in ballonDs.items():
+            if (x.lower() == ballonD.lower()):
+                detail = y
+        if detail != "":
+            return ballonD + " win Ballon D'Or for " + detail + " times."
+        else:
+            return "I don't know"
+
+    match = re.match(r"(.*)where(.*)([^\?]*)\?", chat, re.I)
+    if match:
+        stadium = match.group(3)
+        for x, y in stadiums.items():
+            if (x.lower() == stadium.lower()):
+                detail = y
+        if detail != "":
+            return "Stadium " + stadium + " is located in " + detail
+        else:
+            return "I don't know"
+
     for pattern, answers in patterns:
         match = re.match(pattern, chat, re.I)
         if match:

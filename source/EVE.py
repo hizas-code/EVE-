@@ -16,25 +16,91 @@ reflections ={
     "you": "me",
     "me": "you"}
 
+world_champion = {
+    1930 : "Uruguay",
+    1934 : "Italy",
+    1938 : "Italy",
+    1950 : "Uruguay",
+    1954 : "Germany",
+    1958 : "Brazil",
+    1962 : "Brazil",
+    1966 : "England",
+    1970 : "Brazil",
+    1974 : "Germany",
+    1978 : "Argentina",
+    1982 : "Italy",
+    1986 : "Argentina",
+    1990 : "Germany",
+    1994 : "Brazil",
+    1998 : "France",
+    2002 : "Brazil",
+    2006 : "Italy",
+    2010 : "Spain",
+    2014 : "Germany"
+}
+
+
+clubs = {
+    "Real Madrid": [
+        "White", "Zinedine Zidane", "Santiago Bernabeu"
+    ],
+    "Barcelona": [
+        "Red and Blue", "Luis Enrique", "Camp Nou"
+    ],
+    "Manchester United" : [
+        "Orange", "Jose Mourinho", "Old Trafford"
+    ],
+    "Juventus": [
+        "White and Black", "Massimiliano Allegri", "Juventus Stadium"
+    ],
+    "Bayern Munchen": [
+        "Red", "Carlo Ancelloti", "Allianz Arena"
+    ]
+}
+
+def find_coach(search):
+    for club,info in clubs.items():
+        if club == search:
+            return "Coach of " , club , " is ", info[1]
+    return "I dont know"
+
+stadium = {
+    "Santiago Bernabéu":[
+        "Av. de Concha Espina, 1, 28036 Madrid, Spain"
+    ],
+    "Allianz Arena":[
+        "Werner-Heisenberg-Allee 25, 80939 München, Germany"
+    ],
+    "Camp Nou":[
+        "C. Aristides Maillol, 12, 08028 Barcelona, Spain"
+    ],
+    "Stadion Juventus":[
+        "Corso Gaetano Scirea, 50, 10151 Torino, Italy"
+    ],
+    "Old Trafford Stadium":[
+        "Sir Matt Busby Way, Stretford, Manchester M16 0RA, Great Britain"
+    ]
+}
+
 patterns = [
     [r'(Hello|Hi|Hai|Hey|Hei|Halo)',
      ["{0}"]],
 
-    [r'How are you ([^\?]*)\??',
-     [" I'm fine {0} thank you, how about you?"]],
+    [r'How are you ([^\?]*)\?',
+     [" I'm fine {0}, thank you. How about you?"]],
 
     [r'I\'?m (fine|good|happy|ok)',
-     [" I'm so glad you are {0}. Let's talk about football"]],
+     [" I'm so glad you are {0}. Let's talk about football."]],
 
-    [r'(.*)fuck|shit|damn|asshole(.*)?',
-     ["That's a bad word to say",
-      "Hey hey, language please",
+    [r'fuck|shit|damn|asshole',
+     ["That's a bad word to say.",
+      "Hey hey, language please.",
       "Don't make me tell your mother!"]],
 
     [r'I\'?m (sad|stress|tired|)',
      ["Maybe talking about football will cheer you up!",
-      "This is not the day for you to feel {0}",
-      "Oh come on, don't waste your time to feel {0}",
+      "This is not the day for you to feel {0}.",
+      "Oh come on, don't waste your time to feel {0}.",
       "Why are you {0}?"]],
 
     [r'(.*)you like football?',
@@ -45,6 +111,9 @@ patterns = [
 
     [r'When was football (created|found|invented|started)? ',
      ["Football was {0} by Ancient Greeks (400-375 BC) and then Chinese added rules to it (1130-1160)."]],
+
+    [r'(.*) coach of ([^\?]*)\??',
+     [find_coach("{0}")]],
 
     [r'I (like|love) football',
      ["Hmm what do you {0} about it?",
@@ -110,9 +179,9 @@ patterns = [
 
     [r'I don\'?t(.*)football(.*)',
      ["Oh really? Why?",
-      "Could you explain why you don't {0}",
+      "Could you explain why you don't{0} it?",
       "Maybe if you try it, your mind will change",
-      "The question is: do you want to{0}?"]],
+      "Everybody loves football!"]],
 
     [r'You(.*)',
      ["We're going far off the topic here.",
@@ -130,54 +199,13 @@ patterns = [
       ]],
 ]
 
-world_champion = {
-    1930 : "Uruguay",
-    1934 : "Italy",
-    1938 : "Italy",
-    1950 : "Uruguay",
-    1954 : "Germany",
-    1958 : "Brazil",
-    1962 : "Brazil",
-    1966 : "England",
-    1970 : "Brazil",
-    1974 : "Germany",
-    1978 : "Argentina",
-    1982 : "Italy",
-    1986 : "Argentina",
-    1990 : "Germany",
-    1994 : "Brazil",
-    1998 : "France",
-    2002 : "Brazil",
-    2006 : "Italy",
-    2010 : "Spain",
-    2014 : "Germany"
-}
-
-
-club = {
-    "Real Madrid": [
-        "White", "Zinedine Zidane", "Santiago Bernabeu"
-    ],
-    "Barcelona": [
-        "Red and Blue", "Luis Enrique", "Camp Nou"
-    ],
-    "Manchester United" : [
-        "Orange", "Jose Mourinho", "Old Trafford"
-    ],
-    "Juventus": [
-        "White and Black", "Massimiliano Allegri", "Juventus Stadium"
-    ],
-    "Bayern Munchen": [
-        "Red", "Carlo Ancelloti", "Allianz Arena"
-    ]
-}
 
 def thinking(chat):
     for pattern, answers in patterns:
         match = re.match(pattern, chat, re.I)
         if match:
             answer = random.choice(answers)
-            return answer.format(match.group())
+            return answer.format(*[x for x in match.groups()])
 
 def main():
     print ("Hello there, I'm EVE! You can talk about football with me :)")
@@ -185,7 +213,7 @@ def main():
         chat = input("~~ ")
         speak = thinking(chat)
         print(speak)
-        if chat == "quit":
+        if chat.lower=="quit" or chat.lower== "bye" or chat.lower=="goodbye" or chat.lower=="Done":
             break
 
 if __name__ == "__main__":

@@ -13,10 +13,44 @@ ibrahimovic
 Hi
 How are you [today?] ?
 i like ""
+
 do you know who is the coach of "" ?
+real madrid = Zinédine Zidane
+bayern munchen = Carlo Ancelotti
+barcelona = Luis Enrique Martínez García
+juventus = Massimiliano Allegri
+manchester united = Jose Mourinho
+
 do you know who is champion of "" in "" ?
+
 do you know what is the uniform color of "" ?
+real madrid = white
+bayern munchen = red or black
+barcelona = red and blue stripes
+juventus = black and white stripes
+manchester united = red
+
 do you know how many times "" win the baloon d oor?
+cr
+messi
+neymar
+benzema
+ibrahimovic
+
 do you know who is the best player "" ?
+
+
 do you know what is the stadium of the "" ?
+real madrid = Stadion Santiago Bernabéu
+bayern munchen = Allianz Arena
+barcelona = Camp Nou
+juventus = Stadion Juventus
+manchester united = Old Trafford
+
+
 do you know where is the "" stadium ?
+Stadion Santiago Bernabéu = Av. de Concha Espina, 1, 28036 Madrid, Spanyol
+Allianz Arena = Werner-Heisenberg-Allee 25, 80939 München, Jerman
+Camp Nou = C. Aristides Maillol, 12, 08028 Barcelona, Spanyol
+Stadion Juventus = Corso Gaetano Scirea, 50, 10151 Torino, Italia
+Old Trafford Stadium = Sir Matt Busby Way, Stretford, Manchester M16 0RA, Inggris Raya

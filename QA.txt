@@ -30,14 +30,20 @@ barcelona = red and blue stripes
 juventus = black and white stripes
 manchester united = red
 
-do you know how many times "" win the baloon d oor?
-cr
-messi
-neymar
-benzema
-ibrahimovic
+do you know how many times "" win the ballon d oor?
+cristiano ronaldo = 4 times 
+lionel messi = 5 times 
+neymar = 0
+karim benzema = 0
+zlatan ibrahimovic = 0
 
 do you know who is the best player "" ?
+in the world = Lionel Messi. Because he won Ballon D'Or 5 times.
+real madrid = Cristiano Ronaldo. Because he won Ballon D'Or 4 times.
+bayern munchen = robert lewandowski. He got the title in 2016
+barcelona = Lionel Messi. He got the title in 2016.
+juventus = Alvaro Morata. He got the title in 2016
+manchester united = David De Gea. He got the title in 2016.
 
 
 do you know what is the stadium of the "" ?

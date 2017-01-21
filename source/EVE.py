@@ -39,7 +39,6 @@ world_champion = {
     2014 : "Germany"
 }
 
-
 clubs = {
     "Real Madrid": [
         "White", "Zinedine Zidane", "Santiago Bernabeu"
@@ -58,6 +57,35 @@ clubs = {
     ]
 }
 
+ballonD = {
+    "Cristiano Ronaldo":4,
+    "Lionel Messi":5,
+    "Neymar":0,
+    "Karim Benzema":0,
+    "Zlatan Ibrahimovic":0,
+    "Bambang Pamungkas":0,
+    "Boaz Solossa":0,
+    "Evan Dimas":0,
+    "Firman Utina":0,
+    "Andik Fermansyah":0,
+    "Irfan Bachdim":0,
+    "Hendro Kartiko":0,
+    "Atep":0,
+    "Aliyudin":0
+}
+
+bestPlayer={
+    "the world":"Lionel Messi. Because he won Ballon D'Or for 5 times.",
+    "Real Madrid":"Cristiano Ronaldo. Because he won Ballon D'Or 4 times.",
+    "Bayern Munchen":"Robert Lewandowski. He got the title in 2016.",
+    "Barcelona": "Lionel Messi. He got the title in 2016.",
+    "Juventus": "Alvaro Morata. He got the title in 2016.",
+    "Manchester United": "David De Gea. He got the title in 2016.",
+    "Indonesia":"Boaz Solossa.",
+    "Europe":"Cristiano Ronado.",
+    "Asia":"Omar Abdulrahman"
+}
+
 def find_coach(search):
     for club,info in clubs.items():
         if club == search:
@@ -65,21 +93,11 @@ def find_coach(search):
     return "I dont know"
 
 stadium = {
-    "Santiago Bernabéu":[
-        "Av. de Concha Espina, 1, 28036 Madrid, Spain"
-    ],
-    "Allianz Arena":[
-        "Werner-Heisenberg-Allee 25, 80939 München, Germany"
-    ],
-    "Camp Nou":[
-        "C. Aristides Maillol, 12, 08028 Barcelona, Spain"
-    ],
-    "Stadion Juventus":[
-        "Corso Gaetano Scirea, 50, 10151 Torino, Italy"
-    ],
-    "Old Trafford Stadium":[
-        "Sir Matt Busby Way, Stretford, Manchester M16 0RA, Great Britain"
-    ]
+    "Santiago Bernabéu":"Av. de Concha Espina, 1, 28036 Madrid, Spain",
+    "Allianz Arena":"Werner-Heisenberg-Allee 25, 80939 München, Germany",
+    "Camp Nou":"C. Aristides Maillol, 12, 08028 Barcelona, Spain",
+    "Stadion Juventus":"Corso Gaetano Scirea, 50, 10151 Torino, Italy",
+    "Old Trafford Stadium":"Sir Matt Busby Way, Stretford, Manchester M16 0RA, Great Britain"
 }
 
 patterns = [
@@ -213,7 +231,7 @@ def main():
         chat = input("~~ ")
         speak = thinking(chat)
         print(speak)
-        if chat.lower=="quit" or chat.lower== "bye" or chat.lower=="goodbye" or chat.lower=="Done":
+        if re.match(r"(goodbye|quit|bye|done)",chat,re.I) != None:
             break
 
 if __name__ == "__main__":

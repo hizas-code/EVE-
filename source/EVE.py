@@ -130,7 +130,7 @@ patterns = [
     [r'I\'?m (fine|good|happy|ok)',
      [" I'm so glad you are {0}. Let's talk about football."]],
 
-    [r'fuck|shit|damn|asshole',
+    [r'fuck|shit|damn|asshole|anjing|babi|anjir|bangsat',
      ["That's a bad word to say.",
       "Hey hey, language please.",
       "Don't make me tell your mother!"]],
@@ -218,7 +218,7 @@ patterns = [
       "Maybe if you try it, your mind will change",
       "Everybody loves football!"]],
 
-    [r'You(.*)',
+    [r'(.*)you(.*)',
      ["We're going far off the topic here.",
       "Why do you say that?",
       "We should be discussing football remember?",
@@ -303,10 +303,10 @@ def thinking(chat):
         else:
             return "I don't know"
 
-    match = re.match(r"(.*)where(*.)stadium ([^\?]*)\??", chat, re.I)
+    match = re.match(r"(.*)where(.*)stadium ([^\?]*)\??", chat, re.I)
     if match:
         stadium = match.group(3)
-        for x, y in stadiums():
+        for x, y in stadiums:
             if (x.lower() == stadium.lower()):
                 detail = y[0]
         if detail != "":

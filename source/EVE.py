@@ -16,30 +16,34 @@ reflections ={
     "you": "me",
     "me": "you"}
 
-'''
-world_champions = {
-    1930 : "Uruguay",
-    1934 : "Italy",
-    1938 : "Italy",
-    1950 : "Uruguay",
-    1954 : "Germany",
-    1958 : "Brazil",
-    1962 : "Brazil",
-    1966 : "England",
-    1970 : "Brazil",
-    1974 : "Germany",
-    1978 : "Argentina",
-    1982 : "Italy",
-    1986 : "Argentina",
-    1990 : "Germany",
-    1994 : "Brazil",
-    1998 : "France",
-    2002 : "Brazil",
-    2006 : "Italy",
-    2010 : "Spain",
-    2014 : "Germany"
-}
-'''
+indonesiaClubs = [
+    ["Jayapura",["Persipura Jayapura"]],
+    ["Surabaya", ["Arema"]],
+    ["Padang", ["Semen Padang"]],
+    ["Jakarta", ["Persija Jakarta"]],
+    ["Bandung", ["Persib Bandung"]],
+    ["Palembang", ["Sriwijaya FC"]],
+    ["Banjarmasin", ["Barito Putera"]],
+    ["Bali", ["Bali United Pusam"]],
+    ["Lamongan", ["Persela Lamongan"]],
+    ["Jepara", ["Persija Jepara"]],
+    ["Kediri", ["Persik Kediri"]],
+    ["Malang", ["Persema Malang"]],
+    ["Balikpapan", ["Persiba Balikpapan"]],
+    ["Madura", ["Madura United"]],
+    ["Makassar", ["PSM Makassar"]],
+    ["Pekanbaru", ["PSPS Pekanbaru"]],
+    ["Bontang", ["Bontang PKT"]],
+
+]
+
+commonKnowledges = [
+    ["FIFA", ["FIFA is an international football assoociation"]],
+    ["Ballon D'or", ["Ballon D'Or is an annual association football award presented by France Football."]],
+    ["Football", ["Football is a sport that is kicking a ball with the foot to score a goal."]],
+    ["World Cup", ["World Cup is an international association football competition contested by the senior men's national teams of the members of Fédération Internationale de Football Association (FIFA), the sport's global governing body."]],
+    ["Champion League", ["Champions League is an annual continental club football competition organised by the Union of European Football Associations (UEFA) and contested by top-division European clubs."]]
+]
 
 world_champions = [
     ["1930", ["Uruguay"]],
@@ -77,7 +81,7 @@ clubs = [
     ["Juventus", [
         "White and Black", "Massimiliano Allegri", "Juventus Stadium"
     ]],
-    ["Bayern Munchen",[
+    ["Bayern Munich",[
         "Red", "Carlo Ancelloti", "Allianz Arena"
     ]]
 ]
@@ -100,9 +104,9 @@ ballonDs = [
 ]
 
 bestPlayers=[
-    ["world",["Lionel Messi. Because he won Ballon D'Or for 5 times."]],
+    ["the world",["Lionel Messi. Because he won Ballon D'Or for 5 times."]],
     ["Real Madrid",["Cristiano Ronaldo. Because he won Ballon D'Or 4 times."]],
-    ["Bayern Munchen",["Robert Lewandowski. He got the title in 2016."]],
+    ["Bayern munich",["Robert Lewandowski. He got the title in 2016."]],
     ["Barcelona",["Lionel Messi. He got the title in 2016."]],
     ["Juventus",["Alvaro Morata. He got the title in 2016."]],
     ["Manchester United",["David De Gea. He got the title in 2016."]],
@@ -113,7 +117,7 @@ bestPlayers=[
 
 
 stadiums = [
-    ["Santiago Bernabéu", ["Av. de Concha Espina, 1, 28036 Madrid, Spain"]],
+    ["Santiago Bernabeu", ["Av. de Concha Espina, 1, 28036 Madrid, Spain"]],
     ["Allianz Arena", ["Werner-Heisenberg-Allee 25, 80939 München, Germany"]],
     ["Camp Nou", ["C. Aristides Maillol, 12, 08028 Barcelona, Spain"]],
     ["Stadion Juventus", ["Corso Gaetano Scirea, 50, 10151 Torino, Italy"]],
@@ -121,11 +125,14 @@ stadiums = [
 ]
 
 patterns = [
+    [r'(what\'s|what is) your name?',
+     ["My name is EVE"]],
+
     [r'(Hello|Hi|Hai|Hey|Hei|Halo)',
      ["{0}"]],
 
-    [r'How are you ([^\?]*)\?',
-     [" I'm fine {0}, thank you. How about you?"]],
+    [r'How are you(.*)?',
+     [" I'm fine, thank you. How about you?"]],
 
     [r'I\'?m (fine|good|happy|ok)',
      [" I'm so glad you are {0}. Let's talk about football."]],
@@ -196,7 +203,7 @@ patterns = [
       "I see, are you a huge fan of them?",
       "They're one of the best team in this world."]],
 
-    [r'I (like|love) team(.*)',
+    [r'I (like|love)(.*)',
      ["Hmm what do you {0} about them?",
       "Can you tell me the reasons why you {0} them?",
       "Oh, I like that team too! We're match made in heaven. ",
@@ -204,7 +211,7 @@ patterns = [
       "I see, are you a huge fan of them?",
       "They're one of the best team in this world."]],
 
-    [r'(.*)favorite team(.*)',
+    [r'(.*)favorite club(.*)',
      ["Hmm what do you like about them?",
       "Can you tell me the reasons why you they're your favorite?",
       "Oh, that's my favorite team too! We're match made in heaven. ",
@@ -226,7 +233,16 @@ patterns = [
       "Maybe if you try it, your mind will change",
       "Everybody loves football!"]],
 
-    [r'Do|Are|Were|Did|Have|Had| you(.*)',
+    [r'Do you (like|love) (juventus|real madrid|barcelona|bayern munich|manchester united)?',
+     ["Yes i {0} it",
+      "If you {0} it then I {0} it too",
+      "Of course, it is one of the best team in the world",
+      "Absolutely!"]],
+
+    [r'(.* )?(Yes|No|ok|okey)+$',
+     ["OK then"]],
+
+    [r'Do|Are|Were|Did|Have|Had|Where|What(.*)',
      ["We're going far off the topic here.",
       "Why do you say that?",
       "We should be discussing football remember?",
@@ -239,7 +255,7 @@ patterns = [
       "I sincerely accept your apology"]],
 
     [r'(.*)thankyou|thank you|thanks(.*)',
-     ["Yu're very welcome!",
+     ["You're very welcome!",
       "I hope you're happy with my service"]],
 
     [r'quit|bye|goodbye',
@@ -265,9 +281,9 @@ def thinking(chat):
         else:
             return "I don't know"
 
-    match = re.match(r"(.*)coach of ([^\?]*)\??", chat, re.I)
+    match = re.match(r"(.*) coach([^\?]*)\??", chat, re.I)
     if match:
-        club = match.group(2)
+        club = match.group(1)
         for x, y in clubs:
             if(x.lower() == club.lower()):
                 detail = y[1]
@@ -276,7 +292,7 @@ def thinking(chat):
         else:
             return "I don't know"
 
-    match = re.match(r"(.*)stadium of ([^\?]*)\??", chat, re.I)
+    match = re.match(r"(.* )?(.*) stadium\?", chat, re.I)
     if match:
         club = match.group(2)
         for x, y in clubs:
@@ -331,11 +347,35 @@ def thinking(chat):
         else:
             return "I don't know"
 
+    match = re.match(r"(.*)what is ([^\?]*)\??", chat, re.I)
+    if match:
+        commonKnowledge = match.group(2)
+        for x, y in commonKnowledges:
+            if (x.lower() == commonKnowledge.lower()):
+                detail = y[0]
+        if detail != "":
+            return detail
+        else:
+            return "I don't know"
+
+    match = re.match(r"(.*)clubs in ([^\?]*)\??", chat, re.I)
+    if match:
+        indonesiaClub = match.group(2)
+        for x, y in indonesiaClubs:
+            if (x.lower() == indonesiaClub.lower()):
+                detail = y[0]
+        if detail != "":
+            return detail
+        else:
+            return "I don't know"
+
     for pattern, answers in patterns:
         match = re.match(pattern, chat, re.I)
         if match:
             answer = random.choice(answers)
             return answer.format(*[x for x in match.groups()])
+
+    return "I'm sorry, my knowledge is limited."
 
 def main():
     print ("Hello there, I'm EVE! You can talk about football with me :)")
@@ -343,7 +383,7 @@ def main():
         chat = input("~~ ")
         speak = thinking(chat)
         print(speak)
-        if re.match(r"(goodbye|quit|bye|done)",chat,re.I) != None:
+        if re.match(r"(goodbye|quit|bye|done|exit)",chat,re.I) != None:
             break
 
 if __name__ == "__main__":

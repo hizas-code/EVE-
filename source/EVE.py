@@ -33,7 +33,8 @@ indonesiaClubs = [
     ["Madura", ["Madura United"]],
     ["Makassar", ["PSM Makassar"]],
     ["Pekanbaru", ["PSPS Pekanbaru"]],
-    ["Bontang", ["Bontang PKT"]],
+    ["Bontang", ["Bontang PKT"
+                 ""]],
 
 ]
 
@@ -42,7 +43,8 @@ commonKnowledges = [
     ["Ballon D'or", ["Ballon D'Or is an annual association football award presented by France Football."]],
     ["Football", ["Football is a sport that is kicking a ball with the foot to score a goal."]],
     ["World Cup", ["World Cup is an international association football competition contested by the senior men's national teams of the members of Fédération Internationale de Football Association (FIFA), the sport's global governing body."]],
-    ["Champion League", ["Champions League is an annual continental club football competition organised by the Union of European Football Associations (UEFA) and contested by top-division European clubs."]]
+    ["Champion League", ["Champions League is an annual continental club football competition organised by the Union of European Football Associations (UEFA) and contested by top-division European clubs."]],
+    ["your name", ["My name is EVE."]]
 ]
 
 world_champions = [
@@ -125,9 +127,6 @@ stadiums = [
 ]
 
 patterns = [
-    [r'(what\'s|what is) your name?',
-     ["My name is EVE"]],
-
     [r'(Hello|Hi|Hai|Hey|Hei|Halo)',
      ["{0}"]],
 

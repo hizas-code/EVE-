@@ -196,6 +196,14 @@ patterns = [
       "I see, are you a huge fan of them?",
       "They're one of the best team in this world."]],
 
+    [r'I (like|love) team(.*)',
+     ["Hmm what do you {0} about them?",
+      "Can you tell me the reasons why you {0} them?",
+      "Oh, I like that team too! We're match made in heaven. ",
+      "Well who doesn't!.",
+      "I see, are you a huge fan of them?",
+      "They're one of the best team in this world."]],
+
     [r'(.*)favorite team(.*)',
      ["Hmm what do you like about them?",
       "Can you tell me the reasons why you they're your favorite?",
@@ -218,12 +226,21 @@ patterns = [
       "Maybe if you try it, your mind will change",
       "Everybody loves football!"]],
 
-    [r'(.*)you(.*)',
+    [r'Do|Are|Were|Did|Have|Had| you(.*)',
      ["We're going far off the topic here.",
       "Why do you say that?",
       "We should be discussing football remember?",
       "Let's get back on what you have to say or ask about football, shall we?",
       "Hmmmmm really? I never really thought about that myself."]],
+
+    [r'(.*)sorry(.*)',
+     ["What are you sorry for? I have no feelings",
+      "It's fine, I'm not hurt at all hehe",
+      "I sincerely accept your apology"]],
+
+    [r'(.*)thankyou|thank you|thanks(.*)',
+     ["Yu're very welcome!",
+      "I hope you're happy with my service"]],
 
     [r'quit|bye|goodbye',
      ["I have such a wonderful time talking to you. Goodbye!",
@@ -237,7 +254,7 @@ patterns = [
 
 def thinking(chat):
     detail = ""
-    match = re.match(r"(.*)uniform color of ([^\?]*)\?", chat, re.I)
+    match = re.match(r"(.*)uniform([^\?]*)\?", chat, re.I)
     if match:
         club = match.group(2)
         for x, y in clubs:

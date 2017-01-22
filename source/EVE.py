@@ -358,7 +358,7 @@ def thinking(chat):
         else:
             return "I don't know"
 
-    match = re.match(r"(.*)clubs in ([^\?]*)\??", chat, re.I)
+    match = re.match(r"(.*)club in ([^\?]*)\??", chat, re.I)
     if match:
         indonesiaClub = match.group(2)
         for x, y in indonesiaClubs:
